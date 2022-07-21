@@ -11,7 +11,6 @@ func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
             k += 1
         }
     }
-    print(nums)
     return k
 }
 
