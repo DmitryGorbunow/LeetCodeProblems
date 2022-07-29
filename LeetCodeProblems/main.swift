@@ -1,16 +1,31 @@
 import Foundation
 
-var array = [0,1,2,2,3,0,4,2]
-let val = 2
+let haystack = "h"
+let needle = "h"
 
-func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
-    var k = 0
-    for i in 0..<nums.count {
-        if nums[i] != val {
-            nums[k] = nums[i]
-            k += 1
+func strStr(_ haystack: String, _ needle: String) -> Int {
+
+    guard !needle.isEmpty else { return 0 }
+    guard haystack.count >= needle.count else { return -1 }
+
+    var result = -1
+
+    for i in 0...(haystack.count - needle.count) {
+        if stringEquals(haystack: haystack, needle: needle, i: i) {
+            result = i
+            break
         }
     }
-    return k
+
+    return result
 }
-print(removeElement(&array, val))
+
+func stringEquals(haystack: String, needle: String, i: Int) -> Bool {
+    let startIndex = haystack.index(haystack.startIndex, offsetBy: i)
+    let endIndex = haystack.index(haystack.startIndex, offsetBy: i + needle.count)
+    return needle == haystack[startIndex..<endIndex]
+}
+
+print(strStr(haystack, needle))
+
+
