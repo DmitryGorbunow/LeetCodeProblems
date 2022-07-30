@@ -1,31 +1,33 @@
 import Foundation
 
-let haystack = "h"
-let needle = "h"
+let nums = [1,3,5,6,8,13]
+let target = 7
 
-func strStr(_ haystack: String, _ needle: String) -> Int {
-
-    guard !needle.isEmpty else { return 0 }
-    guard haystack.count >= needle.count else { return -1 }
-
-    var result = -1
-
-    for i in 0...(haystack.count - needle.count) {
-        if stringEquals(haystack: haystack, needle: needle, i: i) {
-            result = i
-            break
+func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+    var low = 0
+    var high = nums.count - 1
+    var insertPosition = 0
+    
+    while low <= high {
+        
+        let mid = (low + high) / 2
+        let guess = nums[mid]
+        
+        if guess == target {
+            return mid
+        }
+        
+        if guess > target {
+            high = mid - 1
+            insertPosition = mid
+        } else {
+            low = mid + 1
+            insertPosition = mid + 1
         }
     }
-
-    return result
+    return insertPosition
 }
 
-func stringEquals(haystack: String, needle: String, i: Int) -> Bool {
-    let startIndex = haystack.index(haystack.startIndex, offsetBy: i)
-    let endIndex = haystack.index(haystack.startIndex, offsetBy: i + needle.count)
-    return needle == haystack[startIndex..<endIndex]
-}
-
-print(strStr(haystack, needle))
+print(searchInsert(nums, target))
 
 
