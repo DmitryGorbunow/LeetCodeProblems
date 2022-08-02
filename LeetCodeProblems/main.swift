@@ -1,33 +1,26 @@
 import Foundation
 
-let nums = [1,3,5,6,8,13]
-let target = 7
+let s = "   Hello Worlderte   "
 
-func searchInsert(_ nums: [Int], _ target: Int) -> Int {
-    var low = 0
-    var high = nums.count - 1
-    var insertPosition = 0
-    
-    while low <= high {
-        
-        let mid = (low + high) / 2
-        let guess = nums[mid]
-        
-        if guess == target {
-            return mid
-        }
-        
-        if guess > target {
-            high = mid - 1
-            insertPosition = mid
-        } else {
-            low = mid + 1
-            insertPosition = mid + 1
-        }
-    }
-    return insertPosition
+//func lengthOfLastWord(_ s: String) -> Int {
+//    var counter = 0
+//    let rev = String(s.reversed())
+//    for i in rev {
+//        if i == " " {
+//            break
+//        }
+//        counter += 1
+//    }
+//    return counter
+//}
+//
+//print(lengthOfLastWord(s))
+
+
+
+func lengthOfLastWord(_ s: String) -> Int {
+    let arr = s.split(separator: " ")
+    return arr[0].count
 }
 
-print(searchInsert(nums, target))
-
-
+print(lengthOfLastWord(s))
