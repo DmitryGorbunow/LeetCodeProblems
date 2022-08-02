@@ -1,26 +1,32 @@
 import Foundation
 
-let s = "   Hello Worlderte   "
+let digits = [8, 9, 9]
 
-//func lengthOfLastWord(_ s: String) -> Int {
-//    var counter = 0
-//    let rev = String(s.reversed())
-//    for i in rev {
-//        if i == " " {
-//            break
-//        }
-//        counter += 1
-//    }
-//    return counter
-//}
-//
-//print(lengthOfLastWord(s))
+func plusOne(_ digits: [Int]) -> [Int] {
 
+    var result = digits
+    var index = result.count - 1
+    
+    while result[index] == 9 {
+        result[index] = 0
+        index -= 1
+        
+        if index < 0 {
+            result.insert(1, at: 0)
+            break
+        }
+    }
+    
+    if index >= 0 {
+        result[index] += 1
+    }
+    
 
+    return result
 
-func lengthOfLastWord(_ s: String) -> Int {
-    let arr = s.split(separator: " ")
-    return arr[0].count
+    
 }
 
-print(lengthOfLastWord(s))
+print(plusOne(digits))
+
+
