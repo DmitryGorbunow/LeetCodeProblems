@@ -1,24 +1,20 @@
-//func fib(i: Int) -> Int {
-//    if i < 2 { return 1 }
-//    else { return fib(i: i - 1) + fib(i: i - 2)}
-//}
-//
-//print(fib(i: 45))
-
-
-func fib(i: Int) -> Int {
-    var arr = [Int]()
-    for k in 0...46 {
-        if k > 1 {
-            arr.append(arr[k-1] + arr[k-2])
-        } else if k == 1 {
-            arr.append(1)
-        } else {
-            arr.append(0)
+let numRows = 5
+func generate(_ numRows: Int) -> [[Int]] {
+    var result = [[1]]
+    
+    for i in 1..<numRows {
+        let prRow = result[i-1]
+        var currRow = [1]
+        
+        for j in 1..<i {
+            let firstNum = prRow[j-1]
+            let secondNum = prRow[j]
+            currRow.append(firstNum + secondNum)
         }
+        currRow.append(1)
+        result.append(currRow)
     }
-    return arr[i + 1]
+    return result
 }
 
-print(fib(i: 45))
-
+print(generate(5))
