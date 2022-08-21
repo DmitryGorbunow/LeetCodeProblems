@@ -1,20 +1,25 @@
-let numRows = 5
-func generate(_ numRows: Int) -> [[Int]] {
-    var result = [[1]]
-    
-    for i in 1..<numRows {
-        let prRow = result[i-1]
-        var currRow = [1]
+import Foundation
+
+func maxProfit(_ prices: [Int]) -> Int {
+    var start = 0
+    var end = 0
+    var maxProfit = 0
+
+    while end <= prices.count-1 {
+        let startP = prices[start]
+        let endP = prices[end]
+        let profit = endP - startP
         
-        for j in 1..<i {
-            let firstNum = prRow[j-1]
-            let secondNum = prRow[j]
-            currRow.append(firstNum + secondNum)
+        if startP > endP {
+            start += 1
+        } else {
+            maxProfit = max(maxProfit, profit)
+            end += 1
         }
-        currRow.append(1)
-        result.append(currRow)
     }
-    return result
+    return maxProfit
 }
 
-print(generate(5))
+print(maxProfit([7,1,5,3,6,4]))
+
+
