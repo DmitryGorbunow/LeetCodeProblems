@@ -1,25 +1,22 @@
 import Foundation
 
-func maxProfit(_ prices: [Int]) -> Int {
-    var start = 0
-    var end = 0
-    var maxProfit = 0
 
-    while end <= prices.count-1 {
-        let startP = prices[start]
-        let endP = prices[end]
-        let profit = endP - startP
-        
-        if startP > endP {
-            start += 1
-        } else {
-            maxProfit = max(maxProfit, profit)
-            end += 1
+func getRow(_ rowIndex: Int) -> [Int] {
+    var currRow = [1]
+    var prRow = [Int]()
+    
+    for i in 1..<rowIndex + 1 {
+        prRow = currRow
+        currRow.removeAll()
+        currRow.append(1)
+
+        for j in 1..<i {
+            let sum = prRow[j] + prRow[j - 1]
+            currRow.append(sum)
         }
+        currRow.append(1)
     }
-    return maxProfit
+    return currRow
 }
 
-print(maxProfit([7,1,5,3,6,4]))
-
-
+print(getRow(3))
