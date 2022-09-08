@@ -1,22 +1,27 @@
 import Foundation
 
+func convertToTitle(_ columnNumber: Int) -> String {
+    let dict: [Int: Character] = [1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "F", 7: "G", 8: "H", 9: "I", 10: "J", 11: "K", 12: "L", 13: "M", 14: "N", 15: "O", 16: "P", 17: "Q", 18: "R", 19: "S", 20: "T", 21: "U", 22: "V", 23: "W", 24: "X", 25: "Y", 0: "Z"]
 
-func getRow(_ rowIndex: Int) -> [Int] {
-    var currRow = [1]
-    var prRow = [Int]()
+    var result = ""
+    var newColumnNumber = columnNumber
     
-    for i in 1..<rowIndex + 1 {
-        prRow = currRow
-        currRow.removeAll()
-        currRow.append(1)
-
-        for j in 1..<i {
-            let sum = prRow[j] + prRow[j - 1]
-            currRow.append(sum)
-        }
-        currRow.append(1)
+    while newColumnNumber > 0 {
+        result.append(dict[newColumnNumber % 26]!)
+        newColumnNumber = (newColumnNumber - 1) / 26
     }
-    return currRow
+    
+    return String(result.reversed())
 }
 
-print(getRow(3))
+print(convertToTitle(701))
+
+
+
+
+
+
+
+
+
+
