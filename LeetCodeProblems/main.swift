@@ -1,25 +1,24 @@
 import Foundation
 
 class Solution {
-    func titleToNumber(_ columnTitle: String) -> Int {
-        var result = 0
+    func isAnagram(_ s: String, _ t: String) -> Bool {
+        var dict1 = [Character: Int]()
+        var dict2 = [Character: Int]()
 
-        for i in 0..<columnTitle.count {
-            result = result * 26 + letterIndex(columnTitle[columnTitle.index(columnTitle.startIndex, offsetBy: i)])
-        }
-
-        return result
+        let baseCounts1 = zip(
+            s, repeatElement(1,count: Int.max))
+        dict1 = Dictionary(baseCounts1, uniquingKeysWith: +)
+        
+        let baseCounts2 = zip(
+            t, repeatElement(1,count: Int.max))
+        dict2 = Dictionary(baseCounts2, uniquingKeysWith: +)
+        
+        return dict1 == dict2
     }
-          
-    func letterIndex(_ letter: Character) -> Int {
-        return Int(letter.unicodeScalars.first!.value) - Int(Unicode.Scalar("A").value) + 1
-    }
-    
-    
 }
 
 let solution = Solution()
 
-print(solution.titleToNumber("AB"))
+print(solution.isAnagram("anagram", "nagaram"))
 
 
